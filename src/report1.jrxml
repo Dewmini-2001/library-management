@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="922d9e56-e905-42c1-bd79-2e4190eb015c">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="900" pageHeight="900" columnWidth="860" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8a826296-8973-40b1-bd10-affc956f7238">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="2"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM student,borrow WHERE student.studentname=borrow.studentname;]]>
+		<![CDATA[SELECT * FROM student, borrow WHERE student.studentname = borrow.studentname;]]>
 	</queryString>
 	<field name="studentid" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -10,9 +13,6 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="email" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="address" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="bid" class="java.lang.Integer">
@@ -31,24 +31,90 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement x="269" y="-1" width="198" height="42" forecolor="#990033" uuid="a19f1202-f496-4e24-b95e-16d7a14a0d9b"/>
+				<textElement>
+					<font fontName="Arial Black" size="24"/>
+				</textElement>
+				<text><![CDATA[Library Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="49" width="62" height="20" uuid="d9727992-ac73-4dc7-8b56-99848a013701"/>
+				<text><![CDATA[Studen ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="117" y="49" width="100" height="20" uuid="a44e3d5c-2f61-4be2-8398-27a9533fafaf"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Student Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="49" width="100" height="20" uuid="c31d9c91-4fef-4d03-8f50-3c7fe68733a8"/>
+				<text><![CDATA[Student Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="49" width="100" height="20" uuid="438f72e7-33db-4dfe-84b4-f2de2199e943"/>
+				<text><![CDATA[Book ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="601" y="49" width="100" height="20" uuid="cbd213b5-6142-4977-b300-15e4c66a1a33"/>
+				<text><![CDATA[Borrowed Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="722" y="49" width="100" height="20" uuid="08c0654a-7e1e-40bc-83da-837d3d184132"/>
+				<text><![CDATA[Returned Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="49" width="100" height="20" uuid="777c4860-3a10-41de-853d-633ed703c373"/>
+				<text><![CDATA[Book]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="47" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="27" width="100" height="20" uuid="ec3cb8d2-7c3d-4095-8bde-9cf1100dca1b"/>
+				<textFieldExpression><![CDATA[$F{studentid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="27" width="100" height="20" uuid="69c8581c-b931-460b-a88c-d155f8558861"/>
+				<textFieldExpression><![CDATA[$F{studentname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="27" width="100" height="20" uuid="471fab96-870c-454d-8283-a099f11d9c28"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="27" width="100" height="20" uuid="72a4f56e-b4d2-4b3b-ba82-df53fb13cbeb"/>
+				<textFieldExpression><![CDATA[$F{bid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="27" width="100" height="20" uuid="1326bb37-b3da-44af-8e8f-d426fca7187d"/>
+				<textFieldExpression><![CDATA[$F{book}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="601" y="27" width="100" height="20" uuid="82f5d54f-2984-47a3-9551-2d2b8aa71a19"/>
+				<textFieldExpression><![CDATA[$F{date_borrowed}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="722" y="27" width="100" height="20" uuid="1f536ef9-4c25-47f7-b17d-cb665fadd2bc"/>
+				<textFieldExpression><![CDATA[$F{date_return}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="61" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="53" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="52" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="83" splitType="Stretch"/>
 	</summary>
 </jasperReport>

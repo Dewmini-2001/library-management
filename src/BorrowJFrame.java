@@ -5,12 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
-
 public class BorrowJFrame extends javax.swing.JFrame {
 
     
@@ -99,13 +93,14 @@ public class BorrowJFrame extends javax.swing.JFrame {
         btnInsert = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        btnDelete1 = new javax.swing.JButton();
+        btnsearch = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         DateChooser2 = new com.toedter.calendar.JDateChooser();
         DateChooser1 = new com.toedter.calendar.JDateChooser();
         btnTotal = new javax.swing.JButton();
         txtSum3 = new javax.swing.JTextField();
-        btnTotal1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        txtbookid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,12 +199,12 @@ public class BorrowJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnDelete1.setBackground(new java.awt.Color(0, 204, 255));
-        btnDelete1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnDelete1.setText("Search");
-        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
+        btnsearch.setBackground(new java.awt.Color(0, 204, 255));
+        btnsearch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnsearch.setText("Search");
+        btnsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelete1ActionPerformed(evt);
+                btnsearchActionPerformed(evt);
             }
         });
 
@@ -230,12 +225,17 @@ public class BorrowJFrame extends javax.swing.JFrame {
 
         txtSum3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        btnTotal1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnTotal1.setForeground(new java.awt.Color(0, 102, 102));
-        btnTotal1.setText("Print Report");
-        btnTotal1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setText("Print");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTotal1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        txtbookid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbookidActionPerformed(evt);
             }
         });
 
@@ -268,19 +268,20 @@ public class BorrowJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUpdate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDelete)))
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtSum3))
+                            .addComponent(txtSum3)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnTotal1)
-                        .addGap(39, 39, 39))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtbookid, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnsearch)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,10 +304,9 @@ public class BorrowJFrame extends javax.swing.JFrame {
                             .addComponent(btnDelete)
                             .addComponent(btnUpdate)
                             .addComponent(btnInsert)
-                            .addComponent(btnDelete1)
                             .addComponent(txtSum3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtBId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -314,8 +314,15 @@ public class BorrowJFrame extends javax.swing.JFrame {
                                 .addGap(15, 15, 15)
                                 .addComponent(txtBook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38))
-                            .addComponent(DateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnTotal1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtbookid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnsearch))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2)
+                                    .addComponent(DateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(DateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -402,11 +409,41 @@ public class BorrowJFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
+    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
         // TODO add your handling code here:
+                // Search code here:
+        int bookid = Integer.parseInt(txtbookid.getText());
+    try {
+        String path = "jdbc:mysql://localhost/librarydb";
+        Connection con = DriverManager.getConnection(path, "root", "dew@123");
+        String sql = "SELECT * FROM book WHERE bookid = ?";
+        
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setInt(1, bookid);
+        
+        ResultSet rs = pst.executeQuery();
+        
+        if (rs.next()) {
+            txtBook.setText(rs.getString("bookname"));
+              } else {
+            JOptionPane.showMessageDialog(null, "Book not found.");
+            // Clear fields if not found
+            txtBook.setText("");
+       
+        }
+        
+        rs.close();
+        pst.close();
+        con.close();
+        
+    } catch (SQLException e) {
+        System.err.println(e.getMessage());
+        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+    }                 
+
           
    
-    }//GEN-LAST:event_btnDelete1ActionPerformed
+    }//GEN-LAST:event_btnsearchActionPerformed
 
     private void txtBIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBIdActionPerformed
         // TODO add your handling code here:
@@ -427,18 +464,13 @@ public class BorrowJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTotalActionPerformed
 
-    private void btnTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotal1ActionPerformed
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/librarydb","root","dew@123")) {
-            //jasper file path set
-            String reportPath = "C:\\Users\\user\\Desktop\\library\\LibraryManagement\\src\\report1.jrxml";
-            JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, conn);
-            JasperViewer.viewReport(jasperPrint, false); // Set 'false' to not require closing the application to close the report viewer
-        } catch (Exception e) {
-            e.printStackTrace(); // Prints detailed error to the console
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnTotal1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtbookidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbookidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbookidActionPerformed
 
     
     public static void main(String args[]) {
@@ -477,12 +509,12 @@ public class BorrowJFrame extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser DateChooser1;
     private com.toedter.calendar.JDateChooser DateChooser2;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnTotal;
-    private javax.swing.JButton btnTotal1;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnsearch;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -496,5 +528,6 @@ public class BorrowJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtBStudentName;
     private javax.swing.JTextField txtBook;
     private javax.swing.JTextField txtSum3;
+    private javax.swing.JTextField txtbookid;
     // End of variables declaration//GEN-END:variables
 }
